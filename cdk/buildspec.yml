@@ -7,7 +7,7 @@ phases:
     commands:
       - npm install
       - curl -L https://foundry.paradigm.xyz | bash
-      - source ~/.bashrc
+      - export PATH="$PATH:/root/.foundry/bin"
       - foundryup
   build:
     commands:
