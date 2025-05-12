@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm install
+      - curl -L https://foundry.paradigm.xyz | bash
+      - source ~/.bashrc
+      - foundryup
+  build:
+    commands:
+      - forge build
+      - npx tsx scripts/deploy.ts
+  post_build:
+    commands:
+      - aws s3 cp deployed.json s3://eth-cicd-bucket-mayank/deployed.json
